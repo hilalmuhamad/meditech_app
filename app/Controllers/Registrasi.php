@@ -13,6 +13,19 @@ class Registrasi extends BaseController
 
     public function simpan()
     {
+        $validation =  \Config\Services::validation();
+        $rules = [
+            'nama' => 'required|min_length[3]',
+            'alamat' => 'permit_empty',
+            'tanggal_lahir' => 'permit_empty|valid_date',
+            'jenis_kelamin' => 'required|in_list[L,P]',
+            'no_telepon' => 'permit_empty|regex_match[/^[0-9+\- ]*$/]'
+        ];
+        if (!$this->validate($rules)) {
+            return view('registrasi_pasien', [
+                'validation' => $validation
+            ]);
+        }
         $pasienModel = new PasienModel();
         $data = [
             'nama' => $this->request->getPost('nama'),

@@ -77,6 +77,15 @@
                     <?= session()->getFlashdata('success') ?>
                 </div>
             <?php endif; ?>
+            <?php if(isset($validation)): ?>
+                <div class="alert alert-danger">
+                    <ul class="mb-0 ps-3">
+                        <?php foreach($validation->getErrors() as $error): ?>
+                            <li><?= esc($error) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
             <a href="/daftar-pasien" class="reg-link"><i class="fa-solid fa-users"></i> Lihat Daftar Pasien</a>
             <form action="/registrasi/simpan" method="post">
                 <div class="mb-3">
