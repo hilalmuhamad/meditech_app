@@ -9,7 +9,15 @@ class RekamMedis extends BaseController
     public function index()
     {
         $model = new RekamMedisModel();
-        $data['rekam'] = $model->orderBy('tanggal', 'DESC')->findAll();
+        $cari = $this->request->getGet('cari');
+        if ($cari) {
+            $data['rekam'] = $model
+                ->like('nama_pasien', $cari)
+                ->orderBy('tanggal', 'DESC')
+                ->findAll();
+        } else {
+            $data['rekam'] = $model->orderBy('tanggal', 'DESC')->findAll();
+        }
         return view('rekam_medis', $data);
     }
 

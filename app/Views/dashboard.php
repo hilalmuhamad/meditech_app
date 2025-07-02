@@ -113,10 +113,6 @@
                     <span class="menu-icon"><i class="fa-solid fa-user-plus"></i></span>
                     Registrasi Pasien
                 </a>
-                <a href="/daftar-pasien" class="menu-item">
-                    <span class="menu-icon"><i class="fa-solid fa-users"></i></span>
-                    Daftar Pasien yang Terdaftar
-                </a>
                 <a href="/jadwal-konsultasi" class="menu-item">
                     <span class="menu-icon"><i class="fa-solid fa-calendar-check"></i></span>
                     Jadwal Konsultasi

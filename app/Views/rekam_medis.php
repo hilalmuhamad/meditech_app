@@ -81,6 +81,31 @@
             <div class="rekam-title mb-4">
                 <i class="fa-solid fa-file-medical me-2" style="color:#6366f1;"></i>Rekam Medis
             </div>
+            <!-- Form Pencarian Riwayat Pasien -->
+            <form method="get" action="" class="mb-4">
+                <div class="search-box p-2 px-3 rounded-4 shadow-sm bg-light d-flex align-items-center gap-2" style="max-width: 420px; margin: 0 auto 18px auto;">
+                    <span class="me-2" style="color:#6366f1;font-size:1.3rem;"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control border-0 bg-light" name="cari" placeholder="Cari nama pasien..." value="<?= esc($_GET['cari'] ?? '') ?>" style="box-shadow:none;outline:none;">
+                    <button class="btn btn-primary px-3 rounded-3 ms-2 d-flex align-items-center gap-1" type="submit" style="font-weight:500;">
+                        <i class="fa fa-search"></i> <span class="d-none d-sm-inline">Cari</span>
+                    </button>
+                </div>
+            </form>
+            <style>
+                .search-box input:focus {
+                    background: #eef2ff;
+                }
+                .search-box input::placeholder {
+                    color: #a5b4fc;
+                    font-style: italic;
+                }
+                .search-box {
+                    transition: box-shadow 0.2s;
+                }
+                .search-box:focus-within {
+                    box-shadow: 0 0 0 3px #6366f133;
+                }
+            </style>
             <?php if(session()->getFlashdata('success')): ?>
                 <div class="alert alert-success">
                     <?= session()->getFlashdata('success') ?>
