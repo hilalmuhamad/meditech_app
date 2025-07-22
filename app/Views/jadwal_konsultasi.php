@@ -122,6 +122,8 @@
                             <th>Jam</th>
                             <th>Dokter</th>
                             <th>Keluhan</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -134,10 +136,26 @@
                                     <td><?= date('H:i', strtotime($j['jam_konsultasi'])) ?></td>
                                     <td><?= esc($j['dokter']) ?></td>
                                     <td><?= esc($j['keluhan']) ?></td>
+                                    <td class="text-center">
+                                        <?php if(isset($j['status']) && $j['status']==='booked'): ?>
+                                            <span class="badge bg-danger">Sudah Dibooking</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-success">Tersedia</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <?php if(!isset($j['status']) || $j['status']!=='booked'): ?>
+                                            <form action="/jadwal-konsultasi/booking/<?= $j['id'] ?>" method="post" style="display:inline;">
+                                                <button type="submit" class="btn btn-primary btn-sm jadwal-btn"><i class="fa-solid fa-calendar-plus"></i> Booking</button>
+                                            </form>
+                                        <?php else: ?>
+                                            <button class="btn btn-secondary btn-sm jadwal-btn" disabled><i class="fa-solid fa-calendar-xmark"></i> Tidak Tersedia</button>
+                                        <?php endif; ?>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
-                            <tr><td colspan="6" class="text-center no-data">Belum ada jadwal konsultasi.</td></tr>
+                            <tr><td colspan="8" class="text-center no-data">Belum ada jadwal konsultasi.</td></tr>
                         <?php endif; ?>
                     </tbody>
                 </table>

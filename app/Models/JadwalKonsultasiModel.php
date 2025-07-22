@@ -7,6 +7,6 @@ class JadwalKonsultasiModel extends Model
 {
     protected $table = 'jadwal_konsultasi';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nama_pasien', 'tanggal_konsultasi', 'jam_konsultasi', 'dokter', 'keluhan'];
+    protected $allowedFields = ['nama_pasien', 'tanggal_konsultasi', 'jam_konsultasi', 'dokter', 'keluhan', 'status'];
     protected $useTimestamps = true;
 }

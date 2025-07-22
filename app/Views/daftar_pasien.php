@@ -85,6 +85,7 @@
                             <th>Jenis Kelamin</th>
                             <th>No. Telepon</th>
                             <th>Tanggal Registrasi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +101,11 @@
                                     <td><?= (new DateTime($p['created_at'], new DateTimeZone('UTC')))
         ->setTimezone(new DateTimeZone('Asia/Jakarta'))
         ->format('d-m-Y H:i') ?></td>
+                                    <td class="text-center">
+                                        <a href="/profil-pasien/<?= $p['id'] ?>" class="btn btn-info btn-sm btn-custom" title="Lihat Profil">
+                                            <i class="fa-solid fa-id-card"></i> Profil
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
