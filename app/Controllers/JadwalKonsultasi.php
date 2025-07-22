@@ -6,6 +6,22 @@ use App\Models\JadwalKonsultasiModel;
 
 class JadwalKonsultasi extends BaseController
 {
+    
+    public function booking($id)
+    {
+        $model = new JadwalKonsultasiModel();
+        $jadwal = $model->find($id);
+        if (!$jadwal) {
+            return redirect()->to('/jadwal-konsultasi')->with('success', 'Jadwal tidak ditemukan!');
+        }
+        // Cek status, jika sudah dibooking, tolak
+        if (isset($jadwal['status']) && $jadwal['status'] === 'booked') {
+            return redirect()->to('/jadwal-konsultasi')->with('success', 'Jadwal sudah dibooking!');
+        }
+        // Update status jadwal menjadi booked
+        $model->update($id, ['status' => 'booked']);
+        return redirect()->to('/jadwal-konsultasi')->with('success', 'Booking jadwal berhasil!');
+    }
     public function index()
     {
         $model = new JadwalKonsultasiModel();
